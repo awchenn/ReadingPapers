@@ -31,6 +31,46 @@ The repository currently contains the implementation-ready design baseline:
 
 React 19, TypeScript, Vite, PDF.js, Dexie/IndexedDB, Zustand, MiniSearch, Workbox, Vitest, Testing Library, and Playwright.
 
+## Run the app
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Quality checks:
+
+```bash
+pnpm typecheck
+pnpm test
+pnpm build
+```
+
+## Browser diagnostics
+
+The app records a local, structured diagnostic history in the current browser tab. It includes PDF import phases and timings, byte counts and header checks, PDF.js worker and progress state, IndexedDB transactions, storage persistence, rendering geometry, and uncaught browser errors. It never records PDF contents, excerpts, or point notes.
+
+Useful JavaScript console commands:
+
+```js
+ConnectedReaderDebug.help()
+ConnectedReaderDebug.events()
+ConnectedReaderDebug.latestError()
+ConnectedReaderDebug.report()
+ConnectedReaderDebug.reportText()
+await ConnectedReaderDebug.copyReport()
+ConnectedReaderDebug.print()
+ConnectedReaderDebug.clear()
+```
+
+Diagnostic events persist across reloads within the same tab. An import-error banner also provides a **Copy debug report** button.
+
+## Current implementation slice
+
+The bare-bones app includes PDF import and rendering, one-paper local persistence, manually captured source-linked points, weighted local search, typed connections, direction-aware connected bullets, source-page jumps, responsive navigation, and a cached PWA shell.
+
+Exact text-layer selection rectangles, drawn region anchors, thumbnails, suggestion ranking, and portable backup remain subsequent MVP phases. Until text-layer capture lands, point creation asks the reader to paste the selected excerpt and restores the source page rather than an exact overlay.
+
 ## Status
 
-MVP design captured as the repository baseline on June 23, 2026. Application implementation has not started.
+MVP design captured as the repository baseline on June 23, 2026. A bare-bones implementation is in progress.
